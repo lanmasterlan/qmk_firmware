@@ -1,3 +1,3 @@
-# mlechner's TADA68 layout
+# lanmasterlan's TADA68 layout
 
-The layout is Mac style with Caps Lock remapped to FN and German Umlaute on the function layer.
+Based on mlechner with addidional arrow keys and different vol/mute keys.
