@@ -7,13 +7,15 @@
 #define _BL 0
 #define _FL 1
 
+
 #define _______ KC_TRNS
 
 enum custom_keycodes {
   MAC_AE = SAFE_RANGE,
   MAC_OE,
   MAC_SS,
-	MAC_UE,
+  MAC_UE,
+  MAC_PRT,
   MAC_SHFT
 };
 
@@ -40,7 +42,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   /* Keymap _FL: Function Layer
    * ,----------------------------------------------------------------.
-   * |   | F1|F2 |F3 |F4 |F5 |F6 |F7 |F8 |F9 |F10|F11|F12|Del    |Ins |
+   * |   | F1|F2 |F3 |F4 |F5 |F6 |F7 |F8 |F9 |F10|F11|F12|Del    |Scr |
    * |----------------------------------------------------------------|
    * |     |   |   |   |   |   |   | Ü | Up| Ö |   |   |   |     |Hme |
    * |----------------------------------------------------------------|
@@ -52,7 +54,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * `----------------------------------------------------------------'
    */
 [_FL] = LAYOUT_ansi(
-  _______, KC_F1 ,KC_F2, KC_F3, KC_F4, KC_F5, KC_F6, KC_F7, KC_F8, KC_F9, KC_F10, KC_F11, KC_F12, KC_DEL, KC_INS ,  \
+  _______, KC_F1 ,KC_F2, KC_F3, KC_F4, KC_F5, KC_F6, KC_F7, KC_F8, KC_F9, KC_F10, KC_F11, KC_F12, KC_DEL, MAC_PRT ,  \
   _______,_______,_______,_______,_______, _______,_______,MAC_UE,KC_UP,MAC_OE,_______,_______,_______, _______,KC_HOME, \
   _______,MAC_AE , MAC_SS,_______,_______,_______,_______,KC_LEFT,KC_DOWN,KC_RGHT,_______,_______,_______,KC_END, \
   _______  ,_______,_______,BL_DEC, BL_TOGG,BL_INC, _______,_______,KC_VOLD,KC_VOLU,KC_MUTE,KC_BTN1, KC_MS_U, KC_BTN2, \
@@ -88,6 +90,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         return false;
       case MAC_SS:
         SEND_STRING(SS_LALT("s"));
+        return false;
+      case MAC_PRT:
+        SEND_STRING(SS_LSFT(SS_LGUI("5")));
         return false;
 		}
 	}
